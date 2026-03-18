@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wild Eden Organic Farms</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g-deep:#1a3a1a;--g-mid:#2d6a2d;--g-light:#4a9e4a;--g-pale:#d4edda;--cream:#fdf6ec;--earth:#8b6340;--earth-l:#c49a6c;--gold:#d4a017;--td:#1c2a1c;--tm:#4a5a4a;--tl:#7a8a7a}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--td);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 5vw;background:rgba(253,246,236,0.95);border-bottom:1px solid rgba(45,106,45,0.1)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--g-deep);line-height:1.2}
+.nav-logo span{display:block;font-size:0.6rem;font-family:'Lato',sans-serif;letter-spacing:0.2em;text-transform:uppercase;color:var(--earth);font-weight:700}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{text-decoration:none;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;color:var(--tm);transition:color .2s}
+.nav-links a:hover{color:var(--g-mid)}
+.nav-cta{background:var(--g-mid)!important;color:white!important;padding:.45rem 1.1rem;border-radius:2px}
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:80px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(74,158,74,.07) 0%,transparent 60%),var(--cream)}
+.hero-deco{position:absolute;right:-80px;top:50%;transform:translateY(-50%);width:600px;height:600px;opacity:.12}
+.hero-content{position:relative;z-index:2;padding:0 5vw;max-width:640px}
+.hero-tag{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--earth);border:1px solid var(--earth-l);padding:.3rem .9rem;border-radius:2px;margin-bottom:1.5rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,5.5vw,4.8rem);line-height:1.08;color:var(--g-deep);margin-bottom:1.4rem}
+.hero h1 em{font-style:italic;color:var(--g-mid)}
+.hero p{font-size:1.05rem;line-height:1.8;color:var(--tm);font-weight:300;max-width:460px;margin-bottom:2.5rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{display:inline-block;background:var(--g-mid);color:white;text-decoration:none;padding:.8rem 2rem;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:2px;transition:background .2s,transform .15s;border:none;cursor:pointer}
+.btn-primary:hover{background:var(--g-deep);transform:translateY(-1px)}
+.btn-outline{display:inline-block;border:1.5px solid var(--g-mid);color:var(--g-mid);text-decoration:none;padding:.8rem 2rem;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:2px;transition:all .2s;background:transparent;cursor:pointer}
+.btn-outline:hover{background:var(--g-mid);color:white;transform:translateY(-1px)}
+.hero-stats{position:absolute;bottom:3rem;right:5vw;display:flex;gap:3rem;z-index:2}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.1rem;color:var(--g-deep);display:block;line-height:1}
+.stat-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--tl);font-weight:700}
+section{padding:5.5rem 5vw}
+.section-tag{font-size:.7rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--earth);display:block;margin-bottom:.7rem}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.5vw,2.8rem);color:var(--g-deep);line-height:1.15;margin-bottom:1.1rem}
+.section-sub{font-size:.98rem;line-height:1.8;color:var(--tm);font-weight:300;max-width:520px}
+.about{background:white;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-img-wrap{background:var(--g-pale);border-radius:4px;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;position:relative;overflow:visible}
+.about-badge{position:absolute;top:1.5rem;left:-1.5rem;background:var(--g-deep);color:white;padding:1rem 1.2rem;border-radius:4px;text-align:center;z-index:2}
+.about-badge strong{display:block;font-family:'Playfair Display',serif;font-size:1.9rem;line-height:1}
+.about-badge span{font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;opacity:.8}
+.about-features{list-style:none;margin-top:1.8rem;border-top:1px solid #e8f0e8;padding-top:1rem}
+.about-features li{display:flex;gap:.8rem;align-items:center;font-size:.93rem;color:var(--tm);padding:.55rem 0;border-bottom:1px solid rgba(45,106,45,.07)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--g-light);flex-shrink:0;display:inline-block}
+.products{background:var(--cream)}
+.products-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1.4rem}
+.product-card{background:white;border-radius:4px;overflow:hidden;border:1px solid rgba(45,106,45,.1);transition:transform .2s,box-shadow .2s}
+.product-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(26,58,26,.09)}
+.product-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;position:relative}
+.product-badge-tag{position:absolute;top:.7rem;right:.7rem;background:var(--g-mid);color:white;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .6rem;border-radius:2px}
+.product-info{padding:1.1rem}
+.product-name{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--g-deep);margin-bottom:.25rem}
+.product-desc{font-size:.82rem;color:var(--tl);line-height:1.6;margin-bottom:.9rem}
+.product-footer{display:flex;align-items:center;justify-content:space-between}
+.product-price{font-size:1.05rem;font-weight:700;color:var(--earth)}
+.product-price small{font-size:.72rem;color:var(--tl);font-weight:400}
+.add-btn{background:var(--g-pale);border:none;color:var(--g-mid);padding:.42rem .85rem;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:background .2s,color .2s}
+.add-btn:hover{background:var(--g-mid);color:white}
+.blog{background:white}
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;margin-top:2.5rem}
+.blog-card{border:1px solid rgba(45,106,45,.1);border-radius:4px;overflow:hidden;transition:transform .2s}
+.blog-card:hover{transform:translateY(-3px)}
+.blog-img{height:160px;background:var(--g-pale);display:flex;align-items:center;justify-content:center;font-size:3rem}
+.blog-body{padding:1.2rem}
+.blog-date{font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--tl);font-weight:700;margin-bottom:.5rem}
+.blog-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--g-deep);margin-bottom:.5rem;line-height:1.3}
+.blog-excerpt{font-size:.83rem;color:var(--tm);line-height:1.65}
+.visit{background:var(--g-deep);color:white;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.visit .section-tag{color:var(--earth-l)}
+.visit .section-title{color:white}
+.visit .section-sub{color:rgba(255,255,255,.7)}
+.visit-perks{list-style:none;margin-top:1.8rem}
+.visit-perks li{display:flex;align-items:center;gap:.8rem;font-size:.93rem;color:rgba(255,255,255,.83);padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.perk-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.booking-form{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:4px;padding:1.8rem}
+.form-title{font-family:'Playfair Display',serif;font-size:1.35rem;color:white;margin-bottom:1.4rem}
+.form-group{margin-bottom:.9rem}
+.form-label{display:block;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.35rem}
+.form-input{width:100%;padding:.65rem .85rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:2px;color:white;font-size:.88rem;font-family:'Lato',sans-serif;outline:none;transition:border-color .2s}
+.form-input::placeholder{color:rgba(255,255,255,.28)}
+.form-input:focus{border-color:rgba(255,255,255,.38)}
+.form-input option{color:#000}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.btn-book{width:100%;margin-top:1.1rem;padding:.85rem;background:var(--gold);color:var(--g-deep);border:none;border-radius:2px;font-size:.82rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:opacity .2s,transform .15s}
+.btn-book:hover{opacity:.86;transform:translateY(-1px)}
+.testimonials{background:var(--cream)}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.4rem;margin-top:2.5rem}
+.testi-card{background:white;border-radius:4px;padding:1.7rem;border-left:3px solid var(--g-light)}
+.testi-text{font-family:'Playfair Display',serif;font-style:italic;font-size:.97rem;line-height:1.8;color:var(--tm);margin-bottom:1.1rem}
+.testi-author{display:flex;align-items:center;gap:.75rem}
+.testi-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.74rem;font-weight:700;background:var(--g-pale);color:var(--g-mid);flex-shrink:0}
+.testi-name{font-size:.85rem;font-weight:700;color:var(--td);display:block}
+.testi-loc{font-size:.73rem;color:var(--tl)}
+footer{background:var(--g-deep);color:rgba(255,255,255,.65);padding:3.5rem 5vw 2rem}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem}
+.footer-brand{font-family:'Playfair Display',serif;font-size:1.4rem;color:white;margin-bottom:.9rem;line-height:1.2}
+.footer-brand span{display:block;font-family:'Lato',sans-serif;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--earth-l);font-weight:700;font-style:normal}
+.footer-desc{font-size:.85rem;line-height:1.7;max-width:300px}
+.footer-col h4{font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:white;margin-bottom:.9rem}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:.45rem;font-size:.85rem}
+.footer-col ul a{color:rgba(255,255,255,.58);text-decoration:none;transition:color .2s}
+.footer-col ul a:hover{color:white}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.09);padding-top:1.4rem;display:flex;justify-content:space-between;align-items:center;font-size:.76rem;flex-wrap:wrap;gap:.5rem}
+#admin-btn{position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;width:42px;height:42px;border-radius:50%;background:rgba(26,58,26,.8);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+#admin-btn:hover{background:var(--g-deep);color:white;transform:scale(1.08)}
+#pwd-overlay{display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.6);align-items:center;justify-content:center}
+#pwd-box{background:var(--cream);border-radius:6px;padding:2.5rem;width:340px;max-width:90vw;text-align:center}
+#pwd-box h3{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--g-deep);margin-bottom:.4rem}
+#pwd-box p{font-size:.83rem;color:var(--tm);margin-bottom:1.5rem}
+#pwd-input{width:100%;padding:.7rem 1rem;border:1.5px solid rgba(45,106,45,.25);border-radius:3px;font-size:.95rem;outline:none;font-family:'Lato',sans-serif;text-align:center;letter-spacing:.15em;transition:border-color .2s}
+#pwd-input:focus{border-color:var(--g-mid)}
+#pwd-error{color:#c0392b;font-size:.78rem;margin-top:.5rem;min-height:1rem}
+#pwd-actions{display:flex;gap:.75rem;margin-top:1.2rem}
+#admin-panel{display:none;position:fixed;inset:0;z-index:10001;background:rgba(0,0,0,.5);overflow-y:auto}
+#admin-inner{background:white;min-height:100vh;max-width:860px;margin:0 auto;padding:2.5rem 2.5rem 4rem}
+.admin-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;padding-bottom:1.2rem;border-bottom:2px solid var(--g-pale)}
+.admin-header h2{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--g-deep)}
+.admin-close{background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--tm)}
+.admin-section{margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid #eee}
+.admin-section h3{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--earth);margin-bottom:1.2rem}
+.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.admin-field{display:flex;flex-direction:column;gap:.3rem}
+.admin-field.full{grid-column:1/-1}
+.admin-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--tm)}
+.admin-input{padding:.6rem .8rem;border:1.5px solid #ddd;border-radius:3px;font-size:.9rem;font-family:'Lato',sans-serif;outline:none;transition:border-color .2s;background:#fafafa;color:#000}
+.admin-input:focus{border-color:var(--g-mid);background:white}
+.admin-textarea{resize:vertical;min-height:80px}
+.product-admin-row{background:#fafafa;border:1px solid #eee;border-radius:4px;padding:1rem;margin-bottom:.8rem}
+.del-btn{background:#fee;border:1px solid #fcc;color:#c0392b;border-radius:3px;padding:.4rem .7rem;cursor:pointer;font-size:.8rem;font-weight:700;margin-top:1.5rem}
+.add-product-btn{background:var(--g-pale);border:1.5px dashed var(--g-light);color:var(--g-mid);border-radius:4px;padding:.7rem;width:100%;cursor:pointer;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-top:.5rem;transition:background .2s}
+.add-product-btn:hover{background:#c3e6cb}
+.blog-admin-row{background:#fafafa;border:1px solid #eee;border-radius:4px;padding:1rem;margin-bottom:.8rem}
+.admin-save{background:var(--g-mid);color:white;border:none;padding:.85rem 2.5rem;border-radius:3px;font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.admin-save:hover{background:var(--g-deep)}
+.save-msg{display:inline-block;margin-left:1rem;font-size:.82rem;color:var(--g-mid);opacity:0;transition:opacity .4s}
+.save-msg.show{opacity:1}
+@media(max-width:768px){.about,.visit{grid-template-columns:1fr}.about-img-wrap{display:none}.footer-top{grid-template-columns:1fr;gap:1.5rem}.hero-stats{display:none}.form-row{grid-template-columns:1fr}.nav-links{display:none}.admin-grid{grid-template-columns:1fr}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-content>*{animation:fadeUp .7s ease both}
+.hero-tag{animation-delay:.1s}.hero h1{animation-delay:.22s}.hero p{animation-delay:.34s}.hero-btns{animation-delay:.46s}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo" id="site-name-nav">Wild Eden<span>Organic Farms</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">Our Farm</a></li>
+    <li><a href="#products">Shop</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#visit">Visit Us</a></li>
+    <li><a href="#visit" class="nav-cta">Book a Visit</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <svg class="hero-deco" viewBox="0 0 500 500" fill="none">
+    <circle cx="250" cy="250" r="220" stroke="#2d6a2d" stroke-width="1"/>
+    <circle cx="250" cy="250" r="170" stroke="#2d6a2d" stroke-width="0.5"/>
+    <path d="M250 30 Q330 140 250 250 Q170 140 250 30Z" fill="#2d6a2d" opacity="0.35"/>
+    <path d="M250 30 Q330 140 250 250 Q170 140 250 30Z" fill="#2d6a2d" opacity="0.35" transform="rotate(72 250 250)"/>
+    <path d="M250 30 Q330 140 250 250 Q170 140 250 30Z" fill="#2d6a2d" opacity="0.35" transform="rotate(144 250 250)"/>
+    <path d="M250 30 Q330 140 250 250 Q170 140 250 30Z" fill="#2d6a2d" opacity="0.35" transform="rotate(216 250 250)"/>
+    <path d="M250 30 Q330 140 250 250 Q170 140 250 30Z" fill="#2d6a2d" opacity="0.35" transform="rotate(288 250 250)"/>
+    <circle cx="250" cy="250" r="25" fill="#2d6a2d" opacity="0.4"/>
+  </svg>
+  <div class="hero-content">
+    <div class="hero-tag" id="hero-tag-text">Certified Organic · Farm to Table</div>
+    <h1 id="hero-heading">Rooted in <em>nature,</em><br>grown with love</h1>
+    <p id="hero-subtext">From our fields to your family's table — fresh organic produce, hand-picked with care.</p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-primary">Shop Fresh Produce</a>
+      <a href="#visit" class="btn-outline">Book a Farm Visit</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num" id="stat1-num">12+</span><span class="stat-label" id="stat1-label">Acres farmed</span></div>
+    <div class="stat"><span class="stat-num" id="stat2-num">40+</span><span class="stat-label" id="stat2-label">Varieties grown</span></div>
+    <div class="stat"><span class="stat-num" id="stat3-num">100%</span><span class="stat-label" id="stat3-label">Certified organic</span></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-img-wrap">
+    <svg width="260" height="260" viewBox="0 0 260 260" fill="none">
+      <ellipse cx="130" cy="180" rx="70" ry="75" fill="#4a9e4a" opacity="0.25"/>
+      <path d="M130 60 Q175 105 158 180 Q130 215 102 180 Q85 105 130 60Z" fill="#2d6a2d" opacity="0.45"/>
+      <path d="M130 90 Q160 120 148 180 Q130 208 112 180 Q100 120 130 90Z" fill="#4a9e4a" opacity="0.55"/>
+      <line x1="130" y1="180" x2="130" y2="230" stroke="#8b6340" stroke-width="3"/>
+      <ellipse cx="130" cy="234" rx="34" ry="9" fill="#c49a6c" opacity="0.35"/>
+    </svg>
+    <div class="about-badge"><strong id="farm-est">2012</strong><span>Est.</span></div>
+  </div>
+  <div>
+    <span class="section-tag">Our Story</span>
+    <h2 class="section-title" id="about-title">Where the wild things grow</h2>
+    <p class="section-sub" id="about-desc">Wild Eden began with a simple belief: that the healthiest food comes from the healthiest soil. We use no synthetic pesticides — just farming wisdom and a deep love for the land.</p>
+    <ul class="about-features" id="about-features">
+      <li><span class="dot"></span>Certified organic since 2015</li>
+      <li><span class="dot"></span>Seasonal, heirloom &amp; heritage varieties</li>
+      <li><span class="dot"></span>Zero-waste composting &amp; water recycling</li>
+      <li><span class="dot"></span>Community-supported agriculture (CSA)</li>
+    </ul>
+  </div>
+</section>
+
+<section class="products" id="products">
+  <div class="products-header">
+    <div>
+      <span class="section-tag">Fresh from the field</span>
+      <h2 class="section-title">This season's harvest</h2>
+    </div>
+  </div>
+  <div class="products-grid" id="products-grid"></div>
+</section>
+
+<section class="blog" id="blog">
+  <span class="section-tag">From the farm</span>
+  <h2 class="section-title">Farm news &amp; stories</h2>
+  <div class="blog-grid" id="blog-grid"></div>
+</section>
+
+<section class="visit" id="visit">
+  <div>
+    <span class="section-tag">Come say hello</span>
+    <h2 class="section-title">Visit Wild Eden</h2>
+    <p class="section-sub" id="visit-desc">Walk through our fields, meet the farmers, and leave with a basket full of goodness.</p>
+    <ul class="visit-perks" id="visit-perks">
+      <li><span class="perk-dot"></span>Guided tours through our crop fields</li>
+      <li><span class="perk-dot"></span>Hands-on harvesting experience</li>
+      <li><span class="perk-dot"></span>Farm-to-table tasting sessions</li>
+      <li><span class="perk-dot"></span>Kids' nature &amp; farm workshops</li>
+      <li><span class="perk-dot"></span>Fresh produce market on-site</li>
+    </ul>
+    <p style="margin-top:1.4rem;font-size:.8rem;color:rgba(255,255,255,.45)" id="visit-hours">Open Tuesday – Sunday, 7am – 6pm</p>
+  </div>
+  <div class="booking-form">
+    <div class="form-title">Book your visit</div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">First name</label><input id="b-fname" class="form-input" type="text" placeholder="Priya"></div>
+      <div class="form-group"><label class="form-label">Last name</label><input id="b-lname" class="form-input" type="text" placeholder="Kumar"></div>
+    </div>
+    <div class="form-group"><label class="form-label">Email</label><input id="b-email" class="form-input" type="email" placeholder="you@example.com"></div>
+    <div class="form-group"><label class="form-label">Phone</label><input id="b-phone" class="form-input" type="tel" placeholder="+91 98765 43210"></div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Date</label><input id="b-date" class="form-input" type="date"></div>
+      <div class="form-group"><label class="form-label">Visitors</label>
+        <select id="b-visitors" class="form-input"><option>1–2 people</option><option>3–5 people</option><option>6–10 people</option><option>Group (10+)</option></select>
+      </div>
+    </div>
+    <div class="form-group"><label class="form-label">Visit type</label>
+      <select id="b-vtype" class="form-input"><option>Guided farm tour</option><option>Harvest experience</option><option>School / group visit</option><option>Farm-to-table session</option></select>
+    </div>
+    <button class="btn-book" id="book-btn">Request Booking</button>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div style="text-align:center;max-width:500px;margin:0 auto">
+    <span class="section-tag">What our customers say</span>
+    <h2 class="section-title">Loved by local families</h2>
+  </div>
+  <div class="testi-grid" id="testi-grid"></div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">Wild Eden<span>Organic Farms</span></div>
+      <p class="footer-desc" id="footer-desc">Cultivating goodness from the earth to your table. Certified organic, grown with heart.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul><li><a href="#about">Our Story</a></li><li><a href="#products">Shop Produce</a></li><li><a href="#blog">Farm Blog</a></li><li><a href="#visit">Visit Us</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><span id="footer-addr">Your Farm Address</span></li>
+        <li><span id="footer-email">laxit.pg@gmail.com</span></li>
+        <li><span id="footer-phone">+91 00000 00000</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Wild Eden Organic Farms. All rights reserved.</span>
+    <span>Made with love &amp; compost 🌱</span>
+  </div>
+</footer>
+
+<!-- ADMIN BUTTON -->
+<button id="admin-btn" title="Admin login">⚙</button>
+
+<!-- PASSWORD OVERLAY -->
+<div id="pwd-overlay">
+  <div id="pwd-box">
+    <h3>Admin Access</h3>
+    <p>Enter your password to edit site content</p>
+    <input id="pwd-input" type="password" placeholder="••••••••">
+    <div id="pwd-error"></div>
+    <div id="pwd-actions">
+      <button class="btn-outline" id="pwd-cancel" style="flex:1;padding:.65rem">Cancel</button>
+      <button class="btn-primary" id="pwd-enter" style="flex:1;padding:.65rem">Enter</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="admin-panel">
+  <div id="admin-inner">
+    <div class="admin-header">
+      <h2>🌿 Site Editor</h2>
+      <button class="admin-close" id="admin-close-btn">✕</button>
+    </div>
+
+    <div class="admin-section">
+      <h3>General Info</h3>
+      <div class="admin-grid">
+        <div class="admin-field"><label class="admin-label">Farm name</label><input class="admin-input" id="a-farm-name" value="Wild Eden Organic Farms"></div>
+        <div class="admin-field"><label class="admin-label">Est. year</label><input class="admin-input" id="a-farm-est" value="2012"></div>
+        <div class="admin-field"><label class="admin-label">Hero tagline</label><input class="admin-input" id="a-hero-tag" value="Certified Organic · Farm to Table"></div>
+        <div class="admin-field"><label class="admin-label">Hero heading</label><input class="admin-input" id="a-hero-h" value="Rooted in nature, grown with love"></div>
+        <div class="admin-field full"><label class="admin-label">Hero subtext</label><input class="admin-input" id="a-hero-sub" value="From our fields to your family's table — fresh organic produce, hand-picked with care."></div>
+      </div>
+    </div>
+
+    <div class="admin-section">
+      <h3>Hero Stats</h3>
+      <div class="admin-grid">
+        <div class="admin-field"><label class="admin-label">Stat 1 number</label><input class="admin-input" id="a-s1n" value="12+"></div>
+        <div class="admin-field"><label class="admin-label">Stat 1 label</label><input class="admin-input" id="a-s1l" value="Acres farmed"></div>
+        <div class="admin-field"><label class="admin-label">Stat 2 number</label><input class="admin-input" id="a-s2n" value="40+"></div>
+        <div class="admin-field"><label class="admin-label">Stat 2 label</label><input class="admin-input" id="a-s2l" value="Varieties grown"></div>
+        <div class="admin-field"><label class="admin-label">Stat 3 number</label><input class="admin-input" id="a-s3n" value="100%"></div>
+        <div class="admin-field"><label class="admin-label">Stat 3 label</label><input class="admin-input" id="a-s3l" value="Certified organic"></div>
+      </div>
+    </div>
+
+    <div class="admin-section">
+      <h3>About Section</h3>
+      <div class="admin-grid">
+        <div class="admin-field"><label class="admin-label">Section title</label><input class="admin-input" id="a-about-title" value="Where the wild things grow"></div>
+        <div class="admin-field full"><label class="admin-label">Description</label><textarea class="admin-input admin-textarea" id="a-about-desc">Wild Eden began with a simple belief: that the healthiest food comes from the healthiest soil. We use no synthetic pesticides — just farming wisdom and a deep love for the land.</textarea></div>
+        <div class="admin-field full"><label class="admin-label">Feature points (one per line)</label><textarea class="admin-input admin-textarea" id="a-about-features">Certified organic since 2015
+Seasonal, heirloom & heritage varieties
+Zero-waste composting & water recycling
+Community-supported agriculture (CSA)</textarea></div>
+      </div>
+    </div>
+
+    <div class="admin-section">
+      <h3>Products</h3>
+      <div id="a-products-list"></div>
+      <button class="add-product-btn" id="add-product-btn">+ Add product</button>
+    </div>
+
+    <div class="admin-section">
+      <h3>Blog Posts</h3>
+      <div id="a-blog-list"></div>
+      <button class="add-product-btn" id="add-blog-btn">+ Add blog post</button>
+    </div>
+
+    <div class="admin-section">
+      <h3>Visit & Booking</h3>
+      <div class="admin-grid">
+        <div class="admin-field full"><label class="admin-label">Visit description</label><textarea class="admin-input admin-textarea" id="a-visit-desc">Walk through our fields, meet the farmers, and leave with a basket full of goodness.</textarea></div>
+        <div class="admin-field full"><label class="admin-label">Opening hours</label><input class="admin-input" id="a-hours" value="Open Tuesday – Sunday, 7am – 6pm"></div>
+        <div class="admin-field full"><label class="admin-label">Perks / activities (one per line)</label><textarea class="admin-input admin-textarea" id="a-perks">Guided tours through our crop fields
+Hands-on harvesting experience
+Farm-to-table tasting sessions
+Kids' nature & farm workshops
+Fresh produce market on-site</textarea></div>
+      </div>
+    </div>
+
+    <div class="admin-section">
+      <h3>Contact & Footer</h3>
+      <div class="admin-grid">
+        <div class="admin-field"><label class="admin-label">Address</label><input class="admin-input" id="a-addr" value="Your Farm Address"></div>
+        <div class="admin-field"><label class="admin-label">Email</label><input class="admin-input" id="a-email" value="laxit.pg@gmail.com"></div>
+        <div class="admin-field"><label class="admin-label">Phone</label><input class="admin-input" id="a-phone" value="+91 00000 00000"></div>
+        <div class="admin-field full"><label class="admin-label">Footer description</label><input class="admin-input" id="a-footer-desc" value="Cultivating goodness from the earth to your table. Certified organic, grown with heart."></div>
+      </div>
+    </div>
+
+    <button class="admin-save" id="save-btn">Save &amp; Apply Changes</button>
+    <span class="save-msg" id="save-msg">✓ Changes applied!</span>
+  </div>
+</div>
+
+<script>
+(function() {
+  var PASS = "#%$^%$#";
+
+  var products = [
+    {emoji:"🥬", name:"Leafy Greens Box", desc:"Spinach, kale, Swiss chard & mixed lettuce.", price:"₹280", unit:"bundle", badge:"In season", bg:"#e8f5e8"},
+    {emoji:"🥕", name:"Root Vegetable Mix", desc:"Carrots, beets, radishes & turnips.", price:"₹320", unit:"kg", badge:"Popular", bg:"#fff3e0"},
+    {emoji:"🍅", name:"Heirloom Tomatoes", desc:"Sun-ripened on the vine.", price:"₹180", unit:"500g", badge:"", bg:"#fce4ec"},
+    {emoji:"🌿", name:"Fresh Herb Bundle", desc:"Basil, coriander, mint, curry leaf & more.", price:"₹120", unit:"bundle", badge:"New", bg:"#e8f5e8"},
+    {emoji:"🥒", name:"Seasonal Veggie Box", desc:"Curated weekly box of the freshest picks.", price:"₹650", unit:"box", badge:"", bg:"#e3f2fd"},
+    {emoji:"🍓", name:"Mixed Fruit Basket", desc:"Seasonal fruits, freshly picked.", price:"₹380", unit:"kg", badge:"Limited", bg:"#fce4ec"}
+  ];
+
+  var blogs = [
+    {emoji:"🌱", date:"March 10, 2025", title:"The secret to our soil's richness", excerpt:"Healthy soil is the foundation of everything we grow. Here's how we've been building ours for over a decade."},
+    {emoji:"🌧️", date:"February 22, 2025", title:"How we harvest rainwater for dry season", excerpt:"Water is precious. Our rainwater harvesting system keeps the farm green through the hottest months."},
+    {emoji:"🧺", date:"January 15, 2025", title:"What's in the box this January", excerpt:"A peek inside this month's seasonal veggie box and the stories behind each harvest."}
+  ];
+
+  var testimonials = [
+    {init:"SR", name:"Sunitha Rajan", loc:"Coimbatore", text:"The quality is incomparable. You can actually taste the difference — vibrant, fresh, and full of life."},
+    {init:"AK", name:"Arjun Krishnaswamy", loc:"Erode", text:"We brought the kids for a farm visit and they absolutely loved it. Best outing we've had in a long time."},
+    {init:"MP", name:"Meera Pillai", loc:"Salem", text:"The weekly veggie box is the highlight of our week. Everything is so fresh you can smell the soil."}
+  ];
+
+  function renderProducts() {
+    var g = document.getElementById('products-grid');
+    g.innerHTML = products.map(function(p, i) {
+      return '<div class="product-card"><div class="product-img" style="background:' + p.bg + '">' + p.emoji +
+        (p.badge ? '<span class="product-badge-tag">' + p.badge + '</span>' : '') +
+        '</div><div class="product-info"><h3 class="product-name">' + p.name + '</h3><p class="product-desc">' + p.desc +
+        '</p><div class="product-footer"><div class="product-price">' + p.price + ' <small>/ ' + p.unit + '</small></div>' +
+        '<button class="add-btn">Add to cart</button></div></div></div>';
+    }).join('');
+  }
+
+  function renderBlog() {
+    var g = document.getElementById('blog-grid');
+    g.innerHTML = blogs.map(function(b) {
+      return '<div class="blog-card"><div class="blog-img">' + b.emoji + '</div><div class="blog-body"><div class="blog-date">' +
+        b.date + '</div><h3 class="blog-title">' + b.title + '</h3><p class="blog-excerpt">' + b.excerpt + '</p></div></div>';
+    }).join('');
+  }
+
+  function renderTestimonials() {
+    document.getElementById('testi-grid').innerHTML = testimonials.map(function(t) {
+      return '<div class="testi-card"><p class="testi-text">"' + t.text + '"</p><div class="testi-author"><div class="testi-avatar">' +
+        t.init + '</div><div><span class="testi-name">' + t.name + '</span><span class="testi-loc">' + t.loc + '</span></div></div></div>';
+    }).join('');
+  }
+
+  function renderAdminProducts() {
+    document.getElementById('a-products-list').innerHTML = products.map(function(p, i) {
+      return '<div class="product-admin-row"><div class="admin-grid">' +
+        '<div class="admin-field"><label class="admin-label">Name</label><input class="admin-input" id="ap-name-' + i + '" value="' + p.name + '"></div>' +
+        '<div class="admin-field"><label class="admin-label">Price</label><input class="admin-input" id="ap-price-' + i + '" value="' + p.price + '"></div>' +
+        '<div class="admin-field"><label class="admin-label">Unit</label><input class="admin-input" id="ap-unit-' + i + '" value="' + p.unit + '"></div>' +
+        '<div class="admin-field"><label class="admin-label">Emoji</label><input class="admin-input" id="ap-emoji-' + i + '" value="' + p.emoji + '"></div>' +
+        '<div class="admin-field"><label class="admin-label">Badge</label><input class="admin-input" id="ap-badge-' + i + '" value="' + p.badge + '"></div>' +
+        '<div class="admin-field full"><label class="admin-label">Description</label><input class="admin-input" id="ap-desc-' + i + '" value="' + p.desc + '"></div>' +
+        '<button class="del-btn" data-idx="' + i + '" data-type="product">Remove</button>' +
+        '</div></div>';
+    }).join('');
+    document.querySelectorAll('[data-type="product"]').forEach(function(btn) {
+      btn.addEventListener('click', function() { products.splice(parseInt(this.dataset.idx), 1); renderAdminProducts(); });
+    });
+  }
+
+  function renderAdminBlog() {
+    document.getElementById('a-blog-list').innerHTML = blogs.map(function(b, i) {
+      return '<div class="blog-admin-row"><div class="admin-grid">' +
+        '<div class="admin-field"><label class="admin-label">Title</label><input class="admin-input" id="ab-title-' + i + '" value="' + b.title + '"></div>' +
+        '<div class="admin-field"><label class="admin-label">Date</label><input class="admin-input" id="ab-date-' + i + '" value="' + b.date + '"></div>' +
+        '<div class="admin-field"><label class="admin-label">Emoji</label><input class="admin-input" id="ab-emoji-' + i + '" value="' + b.emoji + '"></div>' +
+        '<div class="admin-field full"><label class="admin-label">Excerpt</label><textarea class="admin-input admin-textarea" id="ab-exc-' + i + '">' + b.excerpt + '</textarea></div>' +
+        '<button class="del-btn" data-idx="' + i + '" data-type="blog">Remove</button>' +
+        '</div></div>';
+    }).join('');
+    document.querySelectorAll('[data-type="blog"]').forEach(function(btn) {
+      btn.addEventListener('click', function() { blogs.splice(parseInt(this.dataset.idx), 1); renderAdminBlog(); });
+    });
+  }
+
+  // PASSWORD
+  document.getElementById('admin-btn').addEventListener('click', function() {
+    document.getElementById('pwd-overlay').style.display = 'flex';
+    document.getElementById('pwd-input').value = '';
+    document.getElementById('pwd-error').textContent = '';
+    setTimeout(function() { document.getElementById('pwd-input').focus(); }, 100);
+  });
+
+  document.getElementById('pwd-cancel').addEventListener('click', function() {
+    document.getElementById('pwd-overlay').style.display = 'none';
+  });
+
+  document.getElementById('pwd-overlay').addEventListener('click', function(e) {
+    if (e.target === this) this.style.display = 'none';
+  });
+
+  function checkPassword() {
+    var val = document.getElementById('pwd-input').value;
+    if (val === PASS) {
+      document.getElementById('pwd-overlay').style.display = 'none';
+      renderAdminProducts();
+      renderAdminBlog();
+      document.getElementById('admin-panel').style.display = 'block';
+    } else {
+      document.getElementById('pwd-error').textContent = 'Incorrect password. Try again.';
+      document.getElementById('pwd-input').value = '';
+      document.getElementById('pwd-input').focus();
+    }
+  }
+
+  document.getElementById('pwd-enter').addEventListener('click', checkPassword);
+  document.getElementById('pwd-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+
+  // ADMIN CLOSE
+  document.getElementById('admin-close-btn').addEventListener('click', function() {
+    document.getElementById('admin-panel').style.display = 'none';
+  });
+  document.getElementById('admin-panel').addEventListener('click', function(e) {
+    if (e.target === this) this.style.display = 'none';
+  });
+
+  // ADD PRODUCT / BLOG
+  document.getElementById('add-product-btn').addEventListener('click', function() {
+    products.push({emoji:"🌿", name:"New Product", desc:"Description here.", price:"₹0", unit:"kg", badge:"", bg:"#e8f5e8"});
+    renderAdminProducts();
+  });
+  document.getElementById('add-blog-btn').addEventListener('click', function() {
+    blogs.push({emoji:"🌱", date:"", title:"New Post", excerpt:"Write your excerpt here."});
+    renderAdminBlog();
+  });
+
+  // SAVE
+  document.getElementById('save-btn').addEventListener('click', function() {
+    document.querySelector('.nav-logo').innerHTML = document.getElementById('a-farm-name').value + '<span>Organic Farms</span>';
+    document.getElementById('hero-tag-text').textContent = document.getElementById('a-hero-tag').value;
+    document.getElementById('hero-heading').innerHTML = document.getElementById('a-hero-h').value;
+    document.getElementById('hero-subtext').textContent = document.getElementById('a-hero-sub').value;
+    document.getElementById('farm-est').textContent = document.getElementById('a-farm-est').value;
+    document.getElementById('stat1-num').textContent = document.getElementById('a-s1n').value;
+    document.getElementById('stat1-label').textContent = document.getElementById('a-s1l').value;
+    document.getElementById('stat2-num').textContent = document.getElementById('a-s2n').value;
+    document.getElementById('stat2-label').textContent = document.getElementById('a-s2l').value;
+    document.getElementById('stat3-num').textContent = document.getElementById('a-s3n').value;
+    document.getElementById('stat3-label').textContent = document.getElementById('a-s3l').value;
+    document.getElementById('about-title').textContent = document.getElementById('a-about-title').value;
+    document.getElementById('about-desc').textContent = document.getElementById('a-about-desc').value;
+    var feats = document.getElementById('a-about-features').value.split('\n').filter(function(l) { return l.trim(); });
+    document.getElementById('about-features').innerHTML = feats.map(function(f) { return '<li><span class="dot"></span>' + f + '</li>'; }).join('');
+
+    products = products.map(function(p, i) {
+      return {
+        emoji: document.getElementById('ap-emoji-' + i) ? document.getElementById('ap-emoji-' + i).value : p.emoji,
+        name:  document.getElementById('ap-name-' + i)  ? document.getElementById('ap-name-' + i).value  : p.name,
+        price: document.getElementById('ap-price-' + i) ? document.getElementById('ap-price-' + i).value : p.price,
+        unit:  document.getElementById('ap-unit-' + i)  ? document.getElementById('ap-unit-' + i).value  : p.unit,
+        badge: document.getElementById('ap-badge-' + i) ? document.getElementById('ap-badge-' + i).value : p.badge,
+        desc:  document.getElementById('ap-desc-' + i)  ? document.getElementById('ap-desc-' + i).value  : p.desc,
+        bg: p.bg
+      };
+    });
+    renderProducts();
+
+    blogs = blogs.map(function(b, i) {
+      return {
+        emoji:   document.getElementById('ab-emoji-' + i)  ? document.getElementById('ab-emoji-' + i).value  : b.emoji,
+        title:   document.getElementById('ab-title-' + i)  ? document.getElementById('ab-title-' + i).value  : b.title,
+        date:    document.getElementById('ab-date-' + i)   ? document.getElementById('ab-date-' + i).value   : b.date,
+        excerpt: document.getElementById('ab-exc-' + i)    ? document.getElementById('ab-exc-' + i).value    : b.excerpt
+      };
+    });
+    renderBlog();
+
+    document.getElementById('visit-desc').textContent = document.getElementById('a-visit-desc').value;
+    document.getElementById('visit-hours').textContent = document.getElementById('a-hours').value;
+    var perks = document.getElementById('a-perks').value.split('\n').filter(function(l) { return l.trim(); });
+    document.getElementById('visit-perks').innerHTML = perks.map(function(p) { return '<li><span class="perk-dot"></span>' + p + '</li>'; }).join('');
+    document.getElementById('footer-addr').textContent = document.getElementById('a-addr').value;
+    document.getElementById('footer-email').textContent = document.getElementById('a-email').value;
+    document.getElementById('footer-phone').textContent = document.getElementById('a-phone').value;
+    document.getElementById('footer-desc').textContent = document.getElementById('a-footer-desc').value;
+
+    var msg = document.getElementById('save-msg');
+    msg.classList.add('show');
+    setTimeout(function() { msg.classList.remove('show'); }, 2500);
+  });
+
+  // BOOKING EMAIL
+  document.getElementById('book-btn').addEventListener('click', function() {
+    var fname    = document.getElementById('b-fname').value.trim();
+    var lname    = document.getElementById('b-lname').value.trim();
+    var email    = document.getElementById('b-email').value.trim();
+    var phone    = document.getElementById('b-phone').value.trim();
+    var date     = document.getElementById('b-date').value;
+    var visitors = document.getElementById('b-visitors').value;
+    var vtype    = document.getElementById('b-vtype').value;
+    if (!fname || !phone || !date) { alert('Please fill in your name, phone number, and visit date.'); return; }
+    var subject = encodeURIComponent('Farm Visit Booking – Wild Eden');
+    var body = encodeURIComponent(
+      'Hi,\n\nI would like to book a visit to Wild Eden Organic Farms.\n\n' +
+      'Name: ' + fname + ' ' + lname + '\n' +
+      'Phone: ' + phone + '\n' +
+      'Email: ' + (email || 'Not provided') + '\n' +
+      'Date: ' + date + '\n' +
+      'Visitors: ' + visitors + '\n' +
+      'Visit Type: ' + vtype + '\n\nThank you!'
+    );
+    window.location.href = 'mailto:laxit.pg@gmail.com?subject=' + subject + '&body=' + body;
+  });
+
+  // INIT
+  renderProducts();
+  renderBlog();
+  renderTestimonials();
+})();
+</script>
+</body>
+</html>
